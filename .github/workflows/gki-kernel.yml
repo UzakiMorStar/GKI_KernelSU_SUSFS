@@ -230,7 +230,7 @@ jobs:
               case "$variant_input" in
                 "Official" | "MKSU") echo "BRANCH=-s main" >> $GITHUB_ENV ;;
                 "Next")              echo "BRANCH=-s next-susfs-dev" >> $GITHUB_ENV ;;
-                "SukiSU")           echo "BRANCH=-s susfs-test" >> $GITHUB_ENV ;;
+                "SukiSU")           echo "BRANCH=-s test" >> $GITHUB_ENV ;;
                 *) 
                   echo "错误：未定义开发分支的变体 '$variant_input'" >&2
                   exit 1
@@ -259,7 +259,7 @@ jobs:
             curl -LSs "https://raw.githubusercontent.com/5ec1cff/KernelSU/main/kernel/setup.sh" | bash $BRANCH
           elif [ "${{ inputs.kernelsu_variant }}" == "SukiSU" ]; then
             echo "Adding KernelSU SukiSU..."
-            curl -LSs "https://raw.githubusercontent.com/UzakiMorStar/SukiSU-Ultra/test/kernel/setup.sh" | bash $BRANCH
+            curl -LSs "https://raw.githubusercontent.com/UzakiMorStar/SukiSU-Ultra/test/kernel/setup.sh" | bash -s test
           fi
 
       - name: 添加 Baseband-guard 支持
